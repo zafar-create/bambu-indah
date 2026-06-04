@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bambu Indah · Eco-Luxury in Ubud, Bali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --jungle:#1d3528;
+    --jungle-soft:#2f4c3b;
+    --moss:#5d7a5e;
+    --bamboo:#bd9a5f;
+    --bamboo-light:#d8bd8a;
+    --cream:#f6f1e6;
+    --cream-deep:#ece3d2;
+    --ink:#243029;
+    --shadow:0 18px 48px -18px rgba(20,40,28,.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Jost',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:.5px}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--bamboo);font-weight:500;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 40px;transition:.4s ease;
+  }
+  nav.scrolled{background:rgba(29,53,40,.92);backdrop-filter:blur(10px);padding:14px 40px;box-shadow:0 8px 30px -12px rgba(0,0,0,.4)}
+  nav .brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream);letter-spacing:3px}
+  nav .links{display:flex;gap:34px}
+  nav .links a{color:var(--cream);text-decoration:none;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;opacity:.85;transition:.3s}
+  nav .links a:hover{opacity:1;color:var(--bamboo-light)}
+  @media(max-width:760px){nav .links{display:none}nav{padding:18px 24px}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    background:
+      radial-gradient(120% 90% at 80% 10%, rgba(189,154,95,.18), transparent 55%),
+      radial-gradient(140% 120% at 10% 100%, rgba(15,28,20,.9), transparent 60%),
+      linear-gradient(160deg,#27412f 0%, #1d3528 45%, #16271d 100%);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(95deg, rgba(255,255,255,.018) 0 2px, transparent 2px 46px),
+      repeating-linear-gradient(88deg, rgba(0,0,0,.05) 0 1px, transparent 1px 70px);
+    opacity:.6;
+  }
+  /* misty layered hills */
+  .hero .hill{position:absolute;left:-5%;right:-5%;bottom:0;height:46%;border-radius:50% 50% 0 0/100% 100% 0 0}
+  .hero .h1{background:linear-gradient(180deg, rgba(53,82,60,.0), rgba(43,70,52,.55));height:52%;filter:blur(2px)}
+  .hero .h2{background:linear-gradient(180deg, rgba(38,62,46,.0), rgba(30,52,40,.8));height:40%;left:-12%;right:-12%}
+  .hero .h3{background:linear-gradient(180deg, rgba(24,42,30,.2), #14241b);height:28%}
+  .hero-content{position:relative;z-index:3;color:var(--cream);max-width:760px}
+  .hero-content .eyebrow{display:inline-block;margin-bottom:22px}
+  .hero h1{font-size:clamp(3.2rem,9vw,6.6rem);line-height:.98;color:var(--cream);margin-bottom:24px}
+  .hero h1 em{font-style:italic;color:var(--bamboo-light)}
+  .hero p{font-size:1.12rem;font-weight:300;max-width:520px;opacity:.9;margin-bottom:38px}
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;cursor:pointer;
+    font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+    padding:16px 34px;border-radius:40px;border:1px solid var(--bamboo);
+    background:var(--bamboo);color:#1d3528;text-decoration:none;font-weight:500;transition:.35s ease;
+  }
+  .btn:hover{background:transparent;color:var(--bamboo-light);transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--cream);border-color:rgba(246,241,230,.4)}
+  .btn.ghost:hover{border-color:var(--bamboo);color:var(--bamboo-light)}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+  .scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;color:var(--cream);opacity:.6;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:120px 0}
+  .section-head{max-width:640px;margin-bottom:66px}
+  .section-head h2{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:14px 0 18px;color:var(--jungle)}
+  .section-head p{color:#4a5b4f;font-weight:300}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--cream)}
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:40px}}
+  .about-figure{
+    aspect-ratio:4/5;border-radius:6px;position:relative;overflow:hidden;box-shadow:var(--shadow);
+    background:
+      radial-gradient(120% 80% at 70% 20%, rgba(216,189,138,.35), transparent 55%),
+      linear-gradient(150deg,#3a5a42,#22392b 70%);
+  }
+  .about-figure::after{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(100deg, rgba(255,255,255,.05) 0 3px, transparent 3px 30px);
+  }
+  .about-figure .leaf{position:absolute;font-size:7rem;bottom:-10px;right:10px;opacity:.18;filter:saturate(.4)}
+  .about-figure .tag{position:absolute;left:24px;bottom:24px;color:var(--cream);z-index:2}
+  .about-figure .tag span{display:block}
+  .about-figure .tag .big{font-family:'Cormorant Garamond',serif;font-size:2rem;line-height:1}
+  .stats{display:flex;gap:38px;margin-top:38px;flex-wrap:wrap}
+  .stats .num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--bamboo);line-height:1}
+  .stats .lbl{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#6a7a6d}
+
+  /* ---------- HOUSES ---------- */
+  .houses{background:var(--jungle);color:var(--cream)}
+  .houses .section-head h2{color:var(--cream)}
+  .houses .section-head p{color:rgba(246,241,230,.7)}
+  .house-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:860px){.house-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.house-grid{grid-template-columns:1fr}}
+  .house{
+    border-radius:6px;padding:30px 26px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;
+    position:relative;overflow:hidden;border:1px solid rgba(246,241,230,.12);transition:.4s ease;
+  }
+  .house:hover{transform:translateY(-6px);border-color:var(--bamboo)}
+  .house::before{content:"";position:absolute;inset:0;opacity:.9;transition:.4s}
+  .house:nth-child(1)::before{background:linear-gradient(180deg, rgba(29,53,40,.1), rgba(20,36,27,.95)), linear-gradient(140deg,#46604a,#26402f)}
+  .house:nth-child(2)::before{background:linear-gradient(180deg, rgba(29,53,40,.1), rgba(20,36,27,.95)), linear-gradient(140deg,#6a5230,#2d2419)}
+  .house:nth-child(3)::before{background:linear-gradient(180deg, rgba(29,53,40,.1), rgba(20,36,27,.95)), linear-gradient(140deg,#3c5560,#1c2e34)}
+  .house:nth-child(4)::before{background:linear-gradient(180deg, rgba(29,53,40,.1), rgba(20,36,27,.95)), linear-gradient(140deg,#5a6a4a,#283322)}
+  .house:nth-child(5)::before{background:linear-gradient(180deg, rgba(29,53,40,.1), rgba(20,36,27,.95)), linear-gradient(140deg,#7a6240,#332a1b)}
+  .house:nth-child(6)::before{background:linear-gradient(180deg, rgba(29,53,40,.1), rgba(20,36,27,.95)), linear-gradient(140deg,#445e57,#1e302c)}
+  .house>*{position:relative;z-index:2}
+  .house .h-num{font-size:.72rem;letter-spacing:.3em;color:var(--bamboo-light);opacity:.8}
+  .house h3{font-size:1.7rem;margin:8px 0 6px}
+  .house p{font-size:.86rem;font-weight:300;opacity:.82}
+
+  /* ---------- EXPERIENCES ---------- */
+  .exp{background:var(--cream-deep)}
+  .exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:860px){.exp-grid{grid-template-columns:1fr 1fr}}
+  .exp-card{background:var(--cream);border-radius:6px;padding:34px 26px;box-shadow:0 12px 30px -22px rgba(20,40,28,.4);transition:.35s}
+  .exp-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .exp-card .ic{font-size:2rem;display:block;margin-bottom:16px;filter:saturate(.7)}
+  .exp-card h3{font-size:1.4rem;color:var(--jungle);margin-bottom:6px}
+  .exp-card p{font-size:.85rem;color:#5a6a5d;font-weight:300}
+
+  /* ---------- CTA STRIP ---------- */
+  .cta-strip{
+    background:
+      radial-gradient(120% 120% at 10% 10%, rgba(189,154,95,.25), transparent 50%),
+      linear-gradient(150deg,#22392b,#16271d);
+    color:var(--cream);text-align:center;padding:110px 0;
+  }
+  .cta-strip h2{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:18px}
+  .cta-strip p{max-width:520px;margin:0 auto 34px;font-weight:300;opacity:.85}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#14241b;color:rgba(246,241,230,.7);padding:60px 0 40px;font-size:.85rem}
+  .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+  footer .brand{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--cream);letter-spacing:3px}
+  footer a{color:rgba(246,241,230,.7);text-decoration:none;display:block;margin-top:8px;transition:.3s}
+  footer a:hover{color:var(--bamboo-light)}
+  .foot-note{margin-top:40px;padding-top:24px;border-top:1px solid rgba(246,241,230,.1);font-size:.74rem;opacity:.6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* ---------- CHAT HINT (points to the live Qiscus widget bubble) ---------- */
+  #dewi-hint{
+    position:fixed;right:96px;bottom:34px;z-index:80;
+    background:var(--cream);color:var(--jungle);
+    padding:10px 16px;border-radius:30px 30px 4px 30px;
+    box-shadow:0 14px 34px -12px rgba(20,40,28,.5);
+    font-size:.82rem;font-weight:500;letter-spacing:.02em;
+    display:flex;align-items:center;gap:8px;
+    opacity:0;transform:translateX(10px);pointer-events:none;transition:.4s ease;
+  }
+  #dewi-hint.show{opacity:1;transform:translateX(0)}
+  #dewi-hint .av{width:24px;height:24px;border-radius:50%;background:var(--jungle);color:var(--bamboo-light);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:.95rem}
+  @media(max-width:560px){#dewi-hint{display:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="brand">BAMBU&nbsp;INDAH</div>
+  <div class="links">
+    <a href="#about">The Resort</a>
+    <a href="#houses">Houses</a>
+    <a href="#experiences">Experiences</a>
+    <a href="#book">Stay</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hill h1"></div>
+  <div class="hill h2"></div>
+  <div class="hill h3"></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow">Sayan · Ubud · Bali</span>
+    <h1>Where the jungle<br>becomes a <em>home</em></h1>
+    <p>An eco-luxury sanctuary of antique Javanese houses and living bamboo, perched above the Ayung River valley and the rice terraces of Ubud.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#book">Plan your stay</a>
+      <a class="btn ghost" href="#houses">Explore the houses</a>
+    </div>
+  </div>
+  <div class="scroll-cue">scroll to wander ↓</div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">A living sanctuary</span>
+      <h2>Rooted in nature,<br>raised by craft</h2>
+      <p>Bambu Indah began as a private collection of restored antique Javanese bridal homes and grew into one of Bali’s most singular retreats. Each structure — from sculpted bamboo to century-old teak — is set within organic gardens, spring-fed pools and the green hush of the valley.</p>
+      <p style="margin-top:16px">Here, luxury is quiet: farm-to-table dining at Dapur, river swims, and mornings that smell of frangipani and rain.</p>
+      <div class="stats">
+        <div><div class="num">11+</div><div class="lbl">Unique houses</div></div>
+        <div><div class="num">2005</div><div class="lbl">Est. in Ubud</div></div>
+        <div><div class="num">100%</div><div class="lbl">Eco-conscious</div></div>
+      </div>
+    </div>
+    <div class="about-figure">
+      <span class="leaf">🌿</span>
+      <div class="tag">
+        <span class="eyebrow" style="color:var(--bamboo-light)">Overlooking</span>
+        <span class="big">The Ayung Valley</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOUSES -->
+<section class="houses" id="houses">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Stay in a story</span>
+      <h2>Eleven houses,<br>no two alike</h2>
+      <p>Hand-built dwellings that blur the line between architecture and forest. Choose the one that speaks to you — our team will help with the rest.</p>
+    </div>
+    <div class="house-grid">
+      <div class="house"><span class="h-num">01</span><h3>Riverbend</h3><p>A bamboo perch above the rushing Ayung, wrapped in canopy.</p></div>
+      <div class="house"><span class="h-num">02</span><h3>Copper House</h3><p>Warm metal and antique teak, glowing at golden hour.</p></div>
+      <div class="house"><span class="h-num">03</span><h3>Moon House</h3><p>Curved bamboo arcs framing the night sky and valley.</p></div>
+      <div class="house"><span class="h-num">04</span><h3>Glass House (Minang)</h3><p>A soaring Sumatran roofline open to the gardens.</p></div>
+      <div class="house"><span class="h-num">05</span><h3>Udang House</h3><p>Perched beside the natural spring-fed river pool.</p></div>
+      <div class="house"><span class="h-num">06</span><h3>The Tower</h3><p>Climb above the treetops to a private bamboo eyrie.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section class="exp" id="experiences">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Days well wandered</span>
+      <h2>Experiences</h2>
+      <p>From river to ridge, every day at Bambu Indah is an invitation to slow down.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card"><span class="ic">🏊</span><h3>River Pool</h3><p>Swim in the natural spring-fed pool ringed with river stones.</p></div>
+      <div class="exp-card"><span class="ic">🌾</span><h3>Rice Walks</h3><p>Trek the paddies and jungle paths of the Sayan ridge.</p></div>
+      <div class="exp-card"><span class="ic">🍃</span><h3>Dapur Dining</h3><p>Farm-to-table cuisine grown in our own organic gardens.</p></div>
+      <div class="exp-card"><span class="ic">🧘</span><h3>Spa &amp; Yoga</h3><p>Restore among the bamboo, to birdsong and breeze.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip" id="book">
+  <div class="wrap">
+    <span class="eyebrow">Reservations</span>
+    <h2>Let’s find your dates</h2>
+    <p>Tell us when you’d like to arrive and how many will travel. Our assistant <strong>Dewi</strong> will help you start — and connect you to our reservations team to confirm.</p>
+    <button class="btn" onclick="openDewi()">Chat with Dewi →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">BAMBU&nbsp;INDAH</div>
+        <p style="margin-top:10px;max-width:280px;font-weight:300">Banjar Baung, Sayan, Ubud,<br>Gianyar, Bali — Indonesia.</p>
+      </div>
+      <div>
+        <span class="eyebrow" style="color:var(--bamboo-light)">Explore</span>
+        <a href="#about">The Resort</a>
+        <a href="#houses">The Houses</a>
+        <a href="#experiences">Experiences</a>
+      </div>
+      <div>
+        <span class="eyebrow" style="color:var(--bamboo-light)">Connect</span>
+        <a href="#book" onclick="openDewi()">Chat with Dewi</a>
+        <a href="#">WhatsApp &amp; Instagram</a>
+        <a href="#">Reservations</a>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>© Bambu Indah · Demo landing page for Qiscus AgentLabs PoC.</span>
+      <span>Content drafted from public information — to be verified by the resort.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- a small hint bubble that points to the live Qiscus widget launcher -->
+<div id="dewi-hint"><span class="av">D</span> Hi! I’m Dewi — ask me anything ↘</div>
+
+<!-- ============ DEWI CHAT · Qiscus Omnichannel (Qismo) widget ============ -->
+<!-- Public identifiers only. The app_secret is intentionally NOT included here. -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var s, t;
+    s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'https://latest-omnichannel.qiscus.com/js/qismo-v5.js';
+    s.async = true;
+    s.onload = s.onreadystatechange = function () {
+      new Qismo('mbjqi-js2oet8jnzeauox', {
+        options: {
+          channel_id: 135130,
+          mobileBreakPoint: 400,
+          extra_fields: [],
+          baseUrl: 'https://latest-omnichannel.qiscus.com',
+          qismoIframeUrl: 'https://latest-omnichannel.qiscus.com'
+        }
+      });
+    };
+    t = document.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s, t);
+  });
+
+  // Programmatically open the Qiscus widget from our own CTA buttons.
+  function openDewi(){
+    var btn = document.querySelector('#qismo-widget [data-qismo-widget-button], #qismo-widget button');
+    if (btn){ btn.click(); }
+    else { setTimeout(openDewi, 400); } // widget may still be mounting
+  }
+
+  // nav background on scroll
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // gently reveal the hint bubble after the page settles
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      var h = document.getElementById('dewi-hint');
+      if (h) h.classList.add('show');
+    }, 2600);
+    setTimeout(function(){
+      var h = document.getElementById('dewi-hint');
+      if (h) h.classList.remove('show');
+    }, 9000);
+  });
+</script>
+</body>
+</html>
